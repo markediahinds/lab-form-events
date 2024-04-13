@@ -14,6 +14,26 @@ todoInput.addEventListener('keypress', function (e) {
         const todo = e.target.value; // keep a list
         const todoListEle = document.getElementById('todo-list');
         const listItem = document.createElement('li');
+        const removal = document.createElement('span');
+        removal.classList.add('todo-list__exit');
+        listItem.classList.add('todo-list__item');
+        removal.innerText = 'X';
+        listItem.innerText = todo;
+        todoListEle.append(listItem);
+        listItem.append(exit);
+        e.target.value=''; // empty the input so we are ready to add a new item
+        const listItemArr = document.querySelectorAll('li');
+        const removalButtonArr = document.querySelectorAll('span');
+        for (let i = 0; i < removalButtonArr.length; i++) {
+            removalButtonArr[i].addEventListener('click', (e) => { 
+                listItemArr[i].remove();
+            })
+        }
+    }
+})
+
+const todoListEle = document.getElementById('todo-list');
+        const listItem = document.createElement('li');
         const exit = document.createElement('span');
         exit.classList.add('todo-list__exit');
         const createListEle = document.createElement('li');
@@ -21,15 +41,3 @@ todoInput.addEventListener('keypress', function (e) {
         exit.innerText = 'X';
         listItem.innerText = todo;
         todoListEle.append(listItem);
-        listItem.append(exit);
-        e.target.value=''; // empty the input so we are ready to add a new item
-        const listItemsArr = document.querySelectorAll('li');
-        const exitButtonArr = document.querySelectorAll('span');
-        for (let i = 0; i < exitButtonArr.length; i++) {
-            exitButtonArr[i].addEventListener('click', (e) => { 
-                listItemsArr[i].remove();
-            })
-        }
-    }
-})
-
